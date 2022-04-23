@@ -1,11 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { ChatWindowComponent } from './chat-window/chat-window.component';
-import { MessageInputAreaComponent } from './chat-window/message-input-area/message-input-area.component';
-import { DisplayComponent } from './chat-window/display/display.component';
-import { MessageEntryComponent } from './chat-window/display/message-entry/message-entry.component';
+import { ChatWindowComponent } from './pages/chat-window/chat-window.component';
+import { MessageInputAreaComponent } from './pages/chat-window/components/message-input-area/message-input-area.component';
+import { DisplayComponent } from './pages/chat-window/components/display/display.component';
+import { MessageEntryComponent } from './pages/chat-window/components/display/message-entry/message-entry.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { MessageEntryComponent } from './chat-window/display/message-entry/messa
     MessageEntryComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
