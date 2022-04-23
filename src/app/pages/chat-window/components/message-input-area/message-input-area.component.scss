@@ -1,0 +1,21 @@
+form {
+    display: flex;
+    align-items: center;
+    height: 5rem;
+    background-color: gainsboro;
+}
+
+textarea {
+    height: 65%;
+    border: none;
+    margin-left: 1.5rem;
+    width: 100%;
+    resize: none;
+}
+
+button {
+    background-color: gainsboro;
+    border: none;
+    width: 10%;
+    font-weight: bold;
+}
