@@ -1,8 +1,15 @@
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+
 form {
     display: flex;
     align-items: center;
     height: 5rem;
     background-color: gainsboro;
+    justify-content: space-around;
 }
 
 textarea {
@@ -16,6 +23,6 @@ textarea {
 button {
     background-color: gainsboro;
     border: none;
-    width: 10%;
+    width: 5rem;
     font-weight: bold;
 }
