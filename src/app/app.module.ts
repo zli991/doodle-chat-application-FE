@@ -7,6 +7,7 @@ import { ChatWindowComponent } from './pages/chat-window/chat-window.component';
 import { MessageInputAreaComponent } from './pages/chat-window/components/message-input-area/message-input-area.component';
 import { DisplayComponent } from './pages/chat-window/components/display/display.component';
 import { MessageEntryComponent } from './pages/chat-window/components/display/message-entry/message-entry.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { MessageEntryComponent } from './pages/chat-window/components/display/me
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
