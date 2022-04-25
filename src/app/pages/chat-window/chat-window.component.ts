@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'src/app/services/message.service';
+import { Observable } from 'rxjs';
+import { ChatWindowFacadeService } from 'src/app/facade/chat-window-facade.service';
+import { Message } from 'src/app/http/message-http.service';
 
 @Component({
   selector: 'app-chat-window',
@@ -8,12 +10,14 @@ import { MessageService } from 'src/app/services/message.service';
 })
 export class ChatWindowComponent implements OnInit {
 
-  constructor(private messageService: MessageService) { }
+  constructor(private chatWindowFacade: ChatWindowFacadeService) { }
 
   ngOnInit(): void {
-    this.messageService.findAll().subscribe(response => {
-      console.log(response);
-    })
+    this.chatWindowFacade.initializeChatWindowPage();
   }
+
+  public get messages(): Observable<Message[]> {
+    return this.chatWindowFacade.messages;
+  } 
 
 }

@@ -1,15 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Message } from 'src/app/http/message-http.service';
 
 @Component({
   selector: 'app-message-entry',
   templateUrl: './message-entry.component.html',
   styleUrls: ['./message-entry.component.scss']
 })
-export class MessageEntryComponent implements OnInit {
+export class MessageEntryComponent {
 
-  constructor() { }
+  @Input()
+  public message: Message = null;
 
-  ngOnInit(): void {
+  public get creator(): string | null {
+    return this.message.creator;
   }
 
+  public get text(): string | null {
+    return this.message.text;
+  }
+
+  public get createdOn(): string | null {
+    return this.message.createdOn;
+  }
 }

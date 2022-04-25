@@ -1,14 +1,5 @@
 <ul>
-    <li>
-        <app-message-entry></app-message-entry>
-    </li>
-    <li class="my-message">
-        <app-message-entry></app-message-entry>
-    </li>
-    <li>
-        <app-message-entry></app-message-entry>
-    </li>
-    <li class="my-message">
-        <app-message-entry></app-message-entry>
+    <li *ngFor="let message of messages">
+        <app-message-entry [message]="message"></app-message-entry>
     </li>
 </ul>

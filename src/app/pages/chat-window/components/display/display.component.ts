@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Message } from 'src/app/http/message-http.service';
 
 @Component({
   selector: 'app-display',
   templateUrl: './display.component.html',
   styleUrls: ['./display.component.scss']
 })
-export class DisplayComponent implements OnInit {
+export class DisplayComponent {
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  @Input()
+  public messages: Message[] = [];
+  
 }
