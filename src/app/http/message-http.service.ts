@@ -23,7 +23,7 @@ export interface NewMessage {
 export interface MessageSearchOptions {
   pageOptions: {
     pageNumber: number,
-    numberOfResultsPerPage: number
+    numberOfResultsPerPage?: number
   }
 }
 

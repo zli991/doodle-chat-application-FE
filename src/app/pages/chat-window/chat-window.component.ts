@@ -20,6 +20,10 @@ export class ChatWindowComponent implements OnInit {
     this.chatWindowFacade.addNewMessage(message);
   }
 
+  public onShowolderMessages(): void {
+    this.chatWindowFacade.getMoreMessages();
+  }
+
   public get messages(): Observable<Message[]> {
     return this.chatWindowFacade.messages;
   }

@@ -1,5 +1,5 @@
 <div class="older-messages">
-    <button *ngIf="hasOlderMessages">Older</button>
+    <button *ngIf="hasOlderMessages" (click)="onShowOlderMessagesClicked()">Older</button>
 </div>
 <ul>
     <li *ngFor="let message of messages">

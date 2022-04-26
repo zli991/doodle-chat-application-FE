@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Message } from 'src/app/http/message-http.service';
 
 @Component({
@@ -13,5 +13,12 @@ export class DisplayComponent {
 
   @Input()
   public hasOlderMessages: boolean = false;
+
+  @Output()
+  public showOlderMessagesClicked: EventEmitter<void> = new EventEmitter();
+
+  public onShowOlderMessagesClicked(): void {
+    this.showOlderMessagesClicked.emit();
+  }
   
 }

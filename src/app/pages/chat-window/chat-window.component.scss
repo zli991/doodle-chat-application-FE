@@ -3,4 +3,10 @@ app-display {
     padding-right: 1.5rem;
     padding-top: 2rem;
     display: block;
+    overflow-y: auto;
+    height: 90%;
+}
+
+app-message-input-area {
+    height: 10%;
 }
