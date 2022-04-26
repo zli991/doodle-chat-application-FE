@@ -1,6 +1,6 @@
 <footer class="footer">
     <form [formGroup]="messageCreationForm" (ngSubmit)="onCreateMessageFormSubmission()">
         <textarea formControlName="text"></textarea>
-        <button type="submit" [disabled]="!messageCreationForm.valid">Send</button>
+        <button type="submit" [disabled]="submitDissabled">Send</button>
     </form>
 </footer>
