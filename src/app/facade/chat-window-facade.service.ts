@@ -10,6 +10,7 @@ import { MessageService } from '../services/message.service';
 export class ChatWindowFacadeService extends StatefullService {
 
   private _messages: Message[] = [];
+  private _hasOlderMessages: boolean = false;
 
   constructor(private messageService: MessageService) {
     super();
@@ -19,6 +20,7 @@ export class ChatWindowFacadeService extends StatefullService {
     const initSubsription: Subscription = this.messageService.findAll().subscribe((messageResponse: MessageResponse) => {
       this.messageService.updateMessages(messageResponse.content);
       this._messages = messageResponse.content;
+      this._hasOlderMessages = !messageResponse.last;
     });
     this.subscription.add(initSubsription);
   }
@@ -31,5 +33,9 @@ export class ChatWindowFacadeService extends StatefullService {
 
   public get messages(): Observable<Message[]> {
     return this.messageService.messages;
+  }
+
+  public get hasOlderMessages(): boolean {
+    return this._hasOlderMessages;
   }
 }

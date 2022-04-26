@@ -10,5 +10,8 @@ export class DisplayComponent {
 
   @Input()
   public messages: Message[] = [];
+
+  @Input()
+  public hasOlderMessages: boolean = false;
   
 }

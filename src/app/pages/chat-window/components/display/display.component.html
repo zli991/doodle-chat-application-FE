@@ -1,3 +1,6 @@
+<div class="older-messages">
+    <button *ngIf="hasOlderMessages">Older</button>
+</div>
 <ul>
     <li *ngFor="let message of messages">
         <app-message-entry [message]="message"></app-message-entry>

@@ -24,4 +24,8 @@ export class ChatWindowComponent implements OnInit {
     return this.chatWindowFacade.messages;
   }
 
+  public get hasOlderMessages(): boolean {
+    return this.chatWindowFacade.hasOlderMessages;
+  }
+
 }

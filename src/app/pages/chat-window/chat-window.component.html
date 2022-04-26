@@ -1,2 +1,2 @@
-<app-display [messages]="messages | async"></app-display>
+<app-display [messages]="messages | async" [hasOlderMessages]="hasOlderMessages"></app-display>
 <app-message-input-area (messageAdded)="onMessageAdded($event)"></app-message-input-area>
