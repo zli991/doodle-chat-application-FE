@@ -20,5 +20,9 @@ export class DisplayComponent {
   public onShowOlderMessagesClicked(): void {
     this.showOlderMessagesClicked.emit();
   }
+
+  public isMyMessage(message: Message): boolean {
+    return message.creator === 'Ivan';
+  }
   
 }

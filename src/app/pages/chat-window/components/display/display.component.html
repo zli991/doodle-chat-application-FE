@@ -2,7 +2,7 @@
     <button *ngIf="hasOlderMessages" (click)="onShowOlderMessagesClicked()">Older</button>
 </div>
 <ul>
-    <li *ngFor="let message of messages">
+    <li *ngFor="let message of messages" [ngClass]="{'my-message': isMyMessage(message)}">
         <app-message-entry [message]="message"></app-message-entry>
     </li>
 </ul>
