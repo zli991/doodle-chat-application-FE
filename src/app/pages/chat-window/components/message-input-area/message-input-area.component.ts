@@ -16,6 +16,7 @@ export class MessageInputAreaComponent {
     text: new FormControl('', Validators.required),
   });
 
+  // In real app, creator name would probably come from JWT token (in case user registration is required)
   public onCreateMessageFormSubmission(): void {
     const text: string = this.messageCreationForm.value.text.trim();
     if (text.length > 0) {
