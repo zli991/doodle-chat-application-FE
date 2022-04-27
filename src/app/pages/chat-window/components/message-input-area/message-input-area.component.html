@@ -1,5 +1,9 @@
 <footer class="footer">
-    <form [formGroup]="messageCreationForm" (ngSubmit)="onCreateMessageFormSubmission()">
+    <form 
+        [formGroup]="messageCreationForm"
+        (ngSubmit)="onCreateMessageFormSubmission()"
+        (keydown.enter)="onCreateMessageFormSubmission()"
+    >
         <textarea formControlName="text"></textarea>
         <button type="submit" [disabled]="submitDissabled">Send</button>
     </form>

@@ -17,12 +17,15 @@ export class MessageInputAreaComponent {
   });
 
   public onCreateMessageFormSubmission(): void {
-    const message: NewMessage = {
-      creator: 'Ivan',
-      text: this.messageCreationForm.value.text
+    const text: string = this.messageCreationForm.value.text.trim();
+    if (text.length > 0) {
+      const message: NewMessage = {
+        creator: 'Ivan',
+        text: this.messageCreationForm.value.text
+      }
+      this.messageAdded.emit(message);
+      this.messageCreationForm.reset();
     }
-    this.messageAdded.emit(message);
-    this.messageCreationForm.reset();
   }
 
   public get submitDissabled(): boolean {
