@@ -1,0 +1,12 @@
+version: '3'
+services:
+  doodle_chat_application_frontend_service:
+    build: 
+      context: .       
+      dockerfile: Dockerfile
+    container_name:  doodle_chat_application_frontend 
+    ports:
+      - 4242:4200 
+    volumes:
+      - .:/home/app  
+      - /home/app/node_modules 
