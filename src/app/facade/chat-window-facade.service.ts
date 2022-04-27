@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { StatefullService } from '../framework/statefull.service';
-import { Message, MessageResponse, MessageSearchOptions, NewMessage } from '../http/message-http.service';
+import { Message, MessageResponse, NewMessage } from '../http/message-http.service';
 import { MessageService } from '../services/message.service';
 
 @Injectable({
@@ -27,7 +27,7 @@ export class ChatWindowFacadeService extends StatefullService {
   }
 
   public getMoreMessages(): void {
-    const moreMessagesSubscription: Subscription = this.messageService.findAll(this.moreMessagesSearchOptions).subscribe((messageResponse: MessageResponse) => {
+    const moreMessagesSubscription: Subscription = this.messageService.findAll(this.nextPageNumber).subscribe((messageResponse: MessageResponse) => {
       this.messageService.updateMessages([...messageResponse.content, ...this._messages]);
       this._messages = [...messageResponse.content, ...this._messages];
       this._hasOlderMessages = !messageResponse.last;
@@ -49,11 +49,7 @@ export class ChatWindowFacadeService extends StatefullService {
     return this._hasOlderMessages;
   }
 
-  private get moreMessagesSearchOptions(): MessageSearchOptions {
-    return {
-      pageOptions: {
-        pageNumber: ++this._currentPageNumber
-      }
-    }
+  private get nextPageNumber(): number {
+    return ++this._currentPageNumber
   }
 }

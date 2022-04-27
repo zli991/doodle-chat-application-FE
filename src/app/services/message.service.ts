@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Message, MessageHttpService, MessageResponse, MessageSearchOptions, NewMessage } from '../http/message-http.service';
+import { Message, MessageHttpService, MessageResponse, NewMessage } from '../http/message-http.service';
 import { MessageState } from '../state/message.state';
 
 @Injectable({
@@ -10,8 +10,8 @@ export class MessageService {
 
   constructor(private messageHttpService: MessageHttpService, private messageState: MessageState) { }
 
-  public findAll(searchOptions?: MessageSearchOptions): Observable<MessageResponse> {
-    return this.messageHttpService.findAll(searchOptions);
+  public findAll(pageNumber?: number): Observable<MessageResponse> {
+    return this.messageHttpService.findAll(pageNumber);
   }
 
   public save(message: NewMessage): Observable<Message> {

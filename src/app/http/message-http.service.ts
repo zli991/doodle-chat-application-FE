@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpParams } from '@angular/common/http'
 import { Observable } from 'rxjs';
 
 export interface MessageResponse {
@@ -20,28 +20,30 @@ export interface NewMessage {
   creator: string;
 }
 
-export interface MessageSearchOptions {
-  pageOptions: {
-    pageNumber: number,
-    numberOfResultsPerPage?: number
-  }
-}
-
 @Injectable({
   providedIn: 'root'
 })
 export class MessageHttpService {
 
   readonly BASE_URL = 'http://localhost:8080/messages'
+  readonly PAGE_NUMBER_PARAMETER_NAME = 'pageNumber';
 
   constructor(private httpClient: HttpClient) { }
 
-  public findAll(searchOptions?: MessageSearchOptions): Observable<MessageResponse> {
-    const url = this.BASE_URL + '/search';
-    return this.httpClient.post<MessageResponse>(url, searchOptions)
+  public findAll(pageNumber?: number): Observable<MessageResponse> {
+    const options = this.getRequestOptions(pageNumber);
+    return this.httpClient.get<MessageResponse>(this.BASE_URL, options)
   }
 
   public save(message: NewMessage): Observable<Message> {
     return this.httpClient.post<Message>(this.BASE_URL, message)
+  }
+
+  private getRequestOptions(pageNumber?: number): { params: HttpParams } {
+    const params: HttpParams = new HttpParams();
+    if (pageNumber) {
+      return { params: params.append(this.PAGE_NUMBER_PARAMETER_NAME, pageNumber.toString()) }
+    }
+    return { params };
   }
 }
