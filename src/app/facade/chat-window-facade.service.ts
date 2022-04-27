@@ -10,8 +10,6 @@ import { MessageService } from '../services/message.service';
 export class ChatWindowFacadeService extends StatefullService {
 
   private _messages: Message[] = [];
-  private _hasOlderMessages: boolean = false;
-  private _currentPageNumber: number = 0;
 
   constructor(private messageService: MessageService) {
     super();
@@ -21,16 +19,17 @@ export class ChatWindowFacadeService extends StatefullService {
     const initSubsription: Subscription = this.messageService.findAll().subscribe((messageResponse: MessageResponse) => {
       this.messageService.updateMessages(messageResponse.content);
       this._messages = messageResponse.content;
-      this._hasOlderMessages = !messageResponse.last;
+      this.messageService.hasOlderMessages = !messageResponse.last;
     });
     this.subscription.add(initSubsription);
   }
 
   public getMoreMessages(): void {
-    const moreMessagesSubscription: Subscription = this.messageService.findAll(this.nextPageNumber).subscribe((messageResponse: MessageResponse) => {
+    this.messageService.incrementCurrentPageNumber(); 
+    const moreMessagesSubscription: Subscription = this.messageService.findAll().subscribe((messageResponse: MessageResponse) => {
       this.messageService.updateMessages([...messageResponse.content, ...this._messages]);
       this._messages = [...messageResponse.content, ...this._messages];
-      this._hasOlderMessages = !messageResponse.last;
+      this.messageService.hasOlderMessages = !messageResponse.last;
     });
     this.subscription.add(moreMessagesSubscription);
   }
@@ -46,10 +45,6 @@ export class ChatWindowFacadeService extends StatefullService {
   }
 
   public get hasOlderMessages(): boolean {
-    return this._hasOlderMessages;
-  }
-
-  private get nextPageNumber(): number {
-    return ++this._currentPageNumber
+    return this.messageService.hasOlderMessages;
   }
 }
